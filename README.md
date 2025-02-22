@@ -3,7 +3,7 @@
 This Figma plugin automates design version logging by sending version details to a webhook. It enables tracking design updates and linking them to task management tools like Jira through automation platforms such as n8n and Zapier.
 
 ## Features
-- Generates a semi-version entry in Figma's version history.
+- Generates a Name version entry in Figma's version history.
 - Sends version data via webhook.
 - Compatible with n8n, Zapier, and Jira for automated logging.
 - Stores version-related metadata in plugin data.
