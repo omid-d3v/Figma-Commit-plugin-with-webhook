@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create a Version</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h3 {
+      text-align: center;
+      color: #333;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+    }
+    textarea{
+      width: 100%;
+      padding: 8px;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+
+    }
+    .form-container {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .form-container label {
+      font-weight: bold;
+      margin-bottom: 8px;
+      display: block;
+      color: #555;
+    }
+
+    .form-container input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-container input,textarea:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #45a049;
+    }
+
+    .form-container button:active {
+      background-color: #388e3c;
+    }
+
+    .form-container input::placeholder {
+      color: #aaa;
+    }
+
+    .form-container .input-group {
+      margin-bottom: 15px;
+    }
+
+    .form-container .input-group:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h3>Create a Version</h3>
+    <div class="input-group">
+      <label for="page">Page:</label>
+      <input type="text" id="page" placeholder="Page name" />
+    </div>
+    <div class="input-group">
+      <label for="changes">Changes:</label>
+      <textarea type="text" id="changes" placeholder="Describe changes" ></textarea>
+    </div>
+    <div class="input-group">
+      <label for="designLink">Design Link:</label>
+      <input type="text" id="designLink" placeholder="Add design link" />
+    </div>
+    <div class="input-group">
+      <label for="issueLink">Issue Link:</label>
+      <input type="text" id="issueLink" placeholder="Add issue link" />
+    </div>
+    <div class="input-group">
+        <label for="status">Status:</label>
+        <select id="status">
+          <option value="PENDING">PENDING</option>
+          <option value="TO DO" selected>TO DO</option>
+          <option value="IN PROGRESS">IN PROGRESS</option>
+          <option value="REVIEW">REVIEW</option>
+          <option value="DONE">DONE</option>
+        </select>
+      </div>
+    <button id="create">Commit</button>
+  </div>
+
+  <script>
+        // get the page name from the plugin
+        onmessage = (event) => {
+      if (event.data.type === 'set-page-name') {
+        document.getElementById('page').value = event.data.pageName;
+      }
+    };
+    document.getElementById('create').onclick = () => {
+      const page = document.getElementById('page').value;
+      const changes = document.getElementById('changes').value;
+      const designLink = document.getElementById('designLink').value;
+      const issueLink = document.getElementById('issueLink').value;
+      const status = document.getElementById('status').value;
+
+      parent.postMessage(
+        { pluginMessage: { type: 'create-version', page, changes, designLink, issueLink ,status} },
+        '*'
+      );
+    };
+  </script>
+</body>
+</html>
