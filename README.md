@@ -24,7 +24,7 @@ This Figma plugin automates design version logging by sending version details to
 ## Installation
 1. Clone this repository:
    ```sh
-   git clone https://github.com/your-repo/figma-version-webhook.git
+   git clone https://github.com/omid-d3v/Figma-Commit-plugin-with-webhook.git
    ```
 2. Open Figma and go to **Plugins** > **Development** > **Import Plugin from Manifest**.
 3. Select the plugin folder.
